@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root{
+
+  --bg--header:#21a3a3;
+  --bg-header-hover:#13c8b5;
+  --bg-section: #13c8b620;
+  --bg-section-h2:#0b4462;
+  --bg-button:#13c8b5;
+  --bg-button-hover:#0b4462;
+  --bg-footer:#13c8b620;
+  --bg-footer-p:#0b4462;
+}
+
+header {
+  background-color: var(--bg--header);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 35px;
+  transition: background-color 0.5s ease;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+header:hover {
+  background-color: var(--bg-header-hover);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  font-size: 38px;
+}
+
+section {
+  text-align: center;
+  background-color: var(--bg-section);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  color: var(--bg-section-h2);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 18px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-family: "Nunito", sans-serif;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+select:hover {
+  border-color: #007bff;
+}
+
+button[type="submit"] {
+  background-color: var(--bg-button);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--bg-button-hover);
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+output {
+  display: block;
+  margin-top: 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+
+footer {
+  background-color: var(--bg-footer);
+  color: var(--bg-footer-p);
+  text-align: center;
+  padding: 10px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
