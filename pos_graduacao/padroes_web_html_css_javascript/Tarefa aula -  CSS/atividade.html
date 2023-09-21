@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles-task.css" />
+    <title>Quiz sobre o Sistema Solar</title>
+  </head>
+  <body>
+    <header>
+      <h1>Quiz sobre o Sistema Solar</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Pergunta 1:</h2>
+        <p>Quantos planetas existem no Sistema Solar?</p>
+        <form>
+          <label> <input type="radio" name="pergunta1" value="a" />a) 7 </label>
+          <label> <input type="radio" name="pergunta1" value="b" />b) 8 </label>
+          <label> <input type="radio" name="pergunta1" value="c" />c) 9 </label>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Pergunta 2:</h2>
+        <p>
+          Quais destes são planetas gasosos? Selecione todas as opções corretas.
+        </p>
+        <form>
+          <label>
+            <input type="checkbox" name="pergunta2" value="a" />a) Marte
+          </label>
+          <label>
+            <input type="checkbox" name="pergunta2" value="b" />b) Júpiter
+          </label>
+          <label>
+            <input type="checkbox" name="pergunta2" value="c" />c) Vênus
+          </label>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Pergunta 3:</h2>
+        <p>Qual é a maior lua de Saturno?</p>
+        <form>
+          <select name="pergunta3">
+            <option value="a">Europa</option>
+            <option value="b">Titã</option>
+            <option value="c">Lua de Ganimedes</option>
+          </select>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Pergunta 4:</h2>
+        <p>
+          Em que ano a sonda Voyager 2 foi lançada para explorar os planetas do
+          Sistema Solar?
+        </p>
+        <form>
+          <input type="range" name="pergunta4" min="1960" max="1980" step="1" />
+          <output></output>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Sistema Solar</p>
+    </footer>
+
+    <script>
+      // Atualiza a exibição do valor do slider
+      document
+        .querySelector('input[type="range"]')
+        .addEventListener("input", function () {
+          document.querySelector("output").textContent = this.value;
+        });
+    </script>
+  </body>
+</html>
