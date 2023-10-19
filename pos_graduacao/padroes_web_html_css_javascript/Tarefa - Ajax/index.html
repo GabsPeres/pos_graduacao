@@ -138,7 +138,7 @@ function criarEstrelas() {
 
 // Função para criar as nuvens
 function criarNuvens() {
-    const numNuvens = 20; // Número de nuvens que você deseja na página
+    const numNuvens = 20; // Número de nuvens na página
     const body = document.querySelector('body');
 
     for (let i = 0; i < numNuvens; i++) {
@@ -146,6 +146,7 @@ function criarNuvens() {
         cloud.className = 'cloud';
         cloud.style.left = `${Math.random() * 100}vw`;
         cloud.style.top = `${Math.random() * 100}vh`;
+        cloud.style.opacity = 0.10;
         body.appendChild(cloud);
     }
 }
