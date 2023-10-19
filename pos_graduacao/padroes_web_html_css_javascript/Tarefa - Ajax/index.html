@@ -17,14 +17,13 @@
             <div>
                 <h1><img src="./imagens/termometro.png" alt="">Previsão</h1>
                 <h2 id="title2">do Tempo</h2>
-        </div>
-        <div class="col-md-4 offset-md-4">
-            <button type="button" class="btn btn-outline-light" onclick="getLocation()">Clima na Minha Região</button>
-        </div>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button type="button" class="btn btn-outline-light" onclick="getLocation()">Clima na Minha
+                    Região</button>
+            </div>
     </nav>
-   
     <main>
-        
         <section>
             <div id="container" class="container text-center">
                 <div class="col align-self-center">
@@ -111,54 +110,55 @@
         setInterval(atualizarDatasPrevisao, 1000);
 
         var currentTime = new Date().getHours();
-if (6 <= currentTime && currentTime < 12) {
-    document.body.style.background = "linear-gradient( to right, #3EBDE3, #3DA0D7, #3A79C5)";
-    criarNuvens();
+        if (6 <= currentTime && currentTime < 12) {
+            document.body.style.background = "linear-gradient( to right, #3EBDE3, #3DA0D7, #3A79C5)";
+            criarNuvens();
 
-} else if (12 <= currentTime && currentTime < 18) {
-    document.body.style.background = "linear-gradient( to right, #3EBDE3, #3DA0D7, #3B94D2, #3B84C4, #3A79C5)";
-    criarNuvens();
-    
-} else {
-    document.body.style.background = "linear-gradient( to right, #120c56, #000000)";
-    removerNuvens();
-    criarEstrelas();
-}
+        } else if (12 <= currentTime && currentTime < 18) {
+            document.body.style.background = "linear-gradient( to right, #3EBDE3, #3DA0D7, #3B94D2, #3B84C4, #3A79C5)";
+            criarNuvens();
 
-// Função para criar as estrelas
-function criarEstrelas() {
-    for (var i = 0; i < 100; i++) {
-        var star = document.createElement("div");
-        star.className = "star";
-        star.style.left = Math.random() * 100 + "vw";
-        star.style.top = Math.random() * 100 + "vh";
-        document.body.appendChild(star);
-    }
-}
+        } else {
+            document.body.style.background = "linear-gradient( to right, #120c56, #000000)";
+            removerNuvens();
+            criarEstrelas();
+        }
 
-// Função para criar as nuvens
-function criarNuvens() {
-    const numNuvens = 20; // Número de nuvens na página
-    const body = document.querySelector('body');
+        // Função para criar as estrelas
+        function criarEstrelas() {
+            for (var i = 0; i < 100; i++) {
+                var star = document.createElement("div");
+                star.className = "star";
+                star.style.left = Math.random() * 100 + "vw";
+                star.style.top = Math.random() * 100 + "vh";
+                document.body.appendChild(star);
+            }
+        }
 
-    for (let i = 0; i < numNuvens; i++) {
-        const cloud = document.createElement('div');
-        cloud.className = 'cloud';
-        cloud.style.left = `${Math.random() * 100}vw`;
-        cloud.style.top = `${Math.random() * 100}vh`;
-        cloud.style.opacity = 0.10;
-        body.appendChild(cloud);
-    }
-}
+        // Função para criar as nuvens
+        function criarNuvens() {
+            const numNuvens = 20; // Número de nuvens na página
+            const body = document.querySelector('body');
 
-// Função para remover as nuvens
-function removerNuvens() {
-    const nuvens = document.querySelectorAll('.cloud');
-    nuvens.forEach(function (nuvem) {
-        nuvem.remove();
-    });
-}
+            for (let i = 0; i < numNuvens; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.left = `${Math.random() * 100}vw`;
+                cloud.style.top = `${Math.random() * 100}vh`;
+                cloud.style.opacity = 0.10;
+                body.appendChild(cloud);
+            }
+        }
 
+        // Função para remover as nuvens
+        function removerNuvens() {
+            const nuvens = document.querySelectorAll('.cloud');
+            nuvens.forEach(function (nuvem) {
+                nuvem.remove();
+            });
+        }
+
+        // Função Geolocalização
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -175,6 +175,7 @@ function removerNuvens() {
             }
         }
 
+        // Função Obter Cidade
         function obterCidade(latitude, longitude) {
             let apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
             xhr.open("GET", apiUrl, true);
@@ -222,6 +223,7 @@ function removerNuvens() {
                 });
         }
 
+        // Função para obter a previsão do tempo para os proximos dias
         function obterPrevisaoTempoProximosDias(cidade) {
             let apiKey = '414ffd052b8d05bf887ce6fd45073aa6'; // Chave de API do OpenWeatherMap
             let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cidade}&appid=${apiKey}&units=metric&lang=pt`;
@@ -333,7 +335,7 @@ function removerNuvens() {
             }
         }
 
-        // Chame as funções para obter as previsões
+        // Funções para obter as previsões
         function obterPrevisoes(cidade) {
             obterPrevisaoTempoAtual(cidade);
             obterPrevisaoTempoProximosDias(cidade);
