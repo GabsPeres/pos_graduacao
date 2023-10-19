@@ -81,7 +81,6 @@ img {
     margin-top: -14px;
 }
 
-
 #iconeClima {
     margin-left: -130px;
     margin-top: -117px;
@@ -89,6 +88,15 @@ img {
 
 #descricaoClima{
    margin-top: -15px;
+}
+
+.cloud {
+    width: 37px; 
+    height: 40px; 
+    background: url('./imagens/icone_nuvens_dispersas_dia.png') no-repeat;
+    background-size: cover;
+    position: fixed;
+    opacity: 0.10;
 }
 
 
