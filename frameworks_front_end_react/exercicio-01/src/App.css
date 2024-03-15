@@ -1,0 +1,100 @@
+*{
+  margin: 0px;
+  top: 0px;
+  padding: 0px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.App-header > h1 {
+  display: inline-flex;
+  justify-content: center;
+  width: 300px;
+  height: 40px;
+  margin-top: 50px;
+  margin-left: 30px;
+  border: 2px solid black;
+}
+
+.Topic {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: -60px;
+  padding-right: 25px;
+  gap: 20px;
+  list-style-type: none;
+}
+
+.search-box {
+  display: inline-flex;
+  position: relative;
+  float: right;
+  width: 200px;
+  height: 25px;
+  top: 30px;
+  right: 10px;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.Section{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 10px 0px 10px;
+  height: 80px;
+  gap: 30px;
+  list-style-type: none;
+  border: 2px solid black;
+}
+
+.Article {
+  display: inline-flex;
+  margin: 30px 0px 5px 20px;
+  gap: 40px;
+}
+
+.Article > img {
+  width: 400px;
+  height: 200px;
+  border: 2px solid black;
+}
+
+.Text {
+  text-align: justify;
+  width: 600px;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+.Sidebar {
+  display: flex;
+  justify-content:flex-end;
+  margin-top: -685px;
+  padding-right: 50px;
+}
+
+.Section-sidebar {
+  width: 230px;
+  height: 655px;
+  padding: 10px;
+  list-style-type: none;
+  border: 2px solid black;
+}
+
+.Section-sidebar > li {
+  padding-top: 20px;
+}
