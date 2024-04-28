@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.movie-item {
+    background: #eee;
+    padding: 10px 30px;
+}
+
+.movie-item img {
+    max-width: 100%;
+}
+
+.main-header {
+    text-align: center;
+    padding: 50px;
+}
