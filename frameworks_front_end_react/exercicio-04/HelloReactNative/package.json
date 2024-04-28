@@ -1,0 +1,22 @@
+{
+  "name": "helloreactnative",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "npx expo-cli start",
+    "android": "npx expo-cli start --android",
+    "ios": "npx expo-cli start --ios",
+    "web": "npx expo-cli start --web",
+    "eject": "npx expo-cli eject"
+  },
+  "dependencies": {
+    "expo": "~50.0.14",
+    "expo-status-bar": "~1.11.1",
+    "react": "18.2.0",
+    "react-native": "0.73.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
