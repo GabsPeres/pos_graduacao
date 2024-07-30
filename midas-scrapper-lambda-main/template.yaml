@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless trigger-based application
+
+Globals:
+  Function:
+    Timeout: 100
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  MidasScrapperSNS:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: "MidasScrapperSNS.fifo"
+      FifoTopic: true
+      ContentBasedDeduplication: true
+
+  MidasScrapperSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "MidasScrapperSQS.fifo"
+      FifoQueue: true
+      VisibilityTimeout: 100  # Set the visibility timeout to at least 100 seconds
+
+  MidasScrapperSNSSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      TopicArn: !Ref MidasScrapperSNS
+      Endpoint: !GetAtt MidasScrapperSQS.Arn
+
+  MidasScrapperSQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues:
+        - !Ref MidasScrapperSQS
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action:
+              - sqs:SendMessage
+            Resource: !GetAtt MidasScrapperSQS.Arn
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref MidasScrapperSNS
+
+  MidasScrapperLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: scrapper/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      FunctionName: MidasScrapperLambdaFunction
+      Architectures:
+        - x86_64
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt MidasScrapperSQS.Arn
+      Policies:
+        - SNSPublishMessagePolicy:
+            TopicName: MidasScrapperSNS.fifo
+
+Outputs:
+  LambdaFunctionArn:
+    Description: "ARN of the Lambda Function"
+    Value: !GetAtt MidasScrapperLambdaFunction.Arn
