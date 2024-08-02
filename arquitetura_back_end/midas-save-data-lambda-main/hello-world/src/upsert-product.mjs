@@ -92,3 +92,8 @@ export default async function upsertProduct(client, data) {
 
     await client.query(additionalInfoQuery, additionalInfoValues);
 }
+
+console.log('Inserindo supermercado:', supermarketValues);
+console.log('Inserindo produto:', productValues);
+console.log('Inserindo preço:', priceValues);
+console.log('Inserindo informações adicionais:', additionalInfoValues);
