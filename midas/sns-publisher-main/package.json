@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "dev": "node ./src/server.js",
+    "start": "node ./src/server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-sns": "^3.583.0",
+    "aws-sdk": "^2.1659.0",
     "express": "^4.19.2",
-    "node.js": "^0.0.1-security",
-    "typescript": "^5.5.4"
+    "zod": "^3.23.8"
   }
 }
