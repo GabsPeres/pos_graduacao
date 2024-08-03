@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import { SNS } from "aws-sdk";
 import { z, ZodError } from "zod";
 
@@ -11,9 +11,12 @@ app.post("/nfe", async (request, response) => {
   });
 
   try {
-
     const { url } = requestBodySchema.parse(request.body);
-    const sns = new SNS();
+    const sns = new SNS({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_ACCESS_SECRET,
+      region: "us-east-1",
+    });
 
     const { MessageId } = await sns
       .publish({
