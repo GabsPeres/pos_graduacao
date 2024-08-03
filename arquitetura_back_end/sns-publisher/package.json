@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx --env-file=.env ./src/server.ts",
-    "test": "vitest run -- --env-file=.env",
     "build": "tsup ./src",
     "start": "node ./dist/server.js"
   },
