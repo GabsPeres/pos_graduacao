@@ -38,6 +38,17 @@ export async function lambdaHandler(event: SQSEvent): Promise<void> {
             }),
         );
 
+        const geolocationGateway: GeoLocationGateway = new GoogleGeolocationGateway();
+        GeolocationGetawayRegistry.getInstance().setGeolocationGateway(geolocationGateway);
+        const dbConnection: DbConnection = new PgConnection(process.env.URL_POSTGRES as string);
+        const supermarketRepository: SupermarketRepository = new PgSupermarketRepository(dbConnection);
+        const productRepository: ProductRepository = new PgProductRepository(dbConnection);
+        const productPriceRepository: ProductPriceRepository = new PgProductPriceRepository(dbConnection);
+
+        const createSupermarketUseCase = new CreateSupermarketUseCase(supermarketRepository);
+        const createProductUseCase = new CreateProductUseCase(productRepository);
+        const createProductPriceUseCase = new CreateProductPriceUseCase(productPriceRepository);
+
         for (let record of records){
             console.log(record);
         }

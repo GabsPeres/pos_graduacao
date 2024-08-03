@@ -42,7 +42,7 @@ Resources:
   MySaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: scrapper/
+      CodeUri: save-date/
       Handler: app.lambdaHandler
       Runtime: nodejs18.x
       Architectures:
