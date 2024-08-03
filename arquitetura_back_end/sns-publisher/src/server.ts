@@ -1,17 +1,17 @@
-const express = require('express');
-const { SNS } = require('aws-sdk');
-const { z, ZodError } = require('zod');
+import express, { Request, Response } from 'express';
+import { SNS } from 'aws-sdk';
+import { z, ZodError } from 'zod';
 
 const app = express();
 app.use(express.json());
 
-app.post('/nfe', async (request, response) => {
+app.post('/nfe', async (req: Request, res: Response) => {
   const requestBodySchema = z.object({
     url: z.string().url(),
   });
 
   try {
-    const { url } = requestBodySchema.parse(request.body);
+    const { url } = requestBodySchema.parse(req.body);
     const sns = new SNS({
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_ACCESS_SECRET,
@@ -25,22 +25,29 @@ app.post('/nfe', async (request, response) => {
     }).promise();
 
     if (!MessageId) {
-      throw new Error('Fail to publish SNS message');
+      throw new Error('Failed to publish SNS message');
     }
 
-    return response.status(201).json({ success: true });
+    return res.status(201).json({ success: true });
   } catch (error) {
-    console.log(error);
+    console.error('Error:', error);
 
     if (error instanceof ZodError) {
-      return response.status(400).json({
-        message: error.format(),
+      return res.status(400).json({
+        message: error.errors,
       });
     }
-    return response.status(500).json({ message: 'Internal Server Error' });
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message });
+    }
+
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 app.listen(Number(process.env.PORT), () => {
   console.log(`HTTP Server is running on port ${process.env.PORT}`);
 });
+
+
+
