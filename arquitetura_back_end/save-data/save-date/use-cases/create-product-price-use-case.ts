@@ -10,9 +10,7 @@ type Input = {
 };
 
 export class CreateProductPriceUseCase {
-    static execute(arg0: { nfeId: string; date: Date; price: number; productId: string; supermarketId: string; }) {
-        throw new Error('Method not implemented.');
-    }
+    static execute: any;
     public constructor(readonly productPriceRepository: ProductPriceRepository) {}
 
     public async execute({ nfeId, price, date, supermarketId, productId }: Input): Promise<void> {

@@ -10,7 +10,9 @@ import { PgProductRepository } from './adapters/pg-product-repository';
 import { CreateProductPriceUseCase } from './use-cases/create-product-price-use-case';
 import type { ProductPriceRepository } from './bondaries/product-price-repository';
 import { PgProductPriceRepository } from './adapters/pg-product-price-repository';
-
+import { GeolocationGetawayRegistry } from './registries/geolocation-gataway-registry';
+import type { GeoLocationGateway } from './bondaries/geolocation-gateway';
+import { GoogleGeolocationGateway } from './adapters/google-geolocation-gateway';
 
 export async function lambdaHandler(event: SQSEvent): Promise<void> {
     const recordsSchema = z.array(
@@ -49,7 +51,9 @@ export async function lambdaHandler(event: SQSEvent): Promise<void> {
             }),
         );
 
-        const dbConnection: DbConnection = new PgConnection("postgres://admin:admin@localhost:5432/my_db");
+        const geolocationGateway: GeoLocationGateway = new GoogleGeolocationGateway();
+        GeolocationGetawayRegistry.getInstance().setGeolocationGateway(geolocationGateway);
+        const dbConnection: DbConnection = new PgConnection(process.env.URL_POSTGRES as string);
         const supermarketRepository: SupermarketRepository = new PgSupermarketRepository(dbConnection);
         const productRepository: ProductRepository = new PgProductRepository(dbConnection);
         const productPriceRepository: ProductPriceRepository = new PgProductPriceRepository(dbConnection);
@@ -64,17 +68,17 @@ export async function lambdaHandler(event: SQSEvent): Promise<void> {
                 name: record.supermarketName,
                 address: record.address,
             });
-        for (let item of record.items) {
-            await createProductUseCase.execute({ code: item.code, name: item.name });
-            await CreateProductPriceUseCase.execute({
+            for (let item of record.items) {
+                await createProductUseCase.execute({ code: item.code, name: item.name });
+                await createProductPriceUseCase.execute({
                     nfeId: record.nfeId,
                     date: record.date,
                     price: item.price,
                     productId: item.code,
                     supermarketId: record.cnpj,
-             });
-          }
-        }    
+                });
+            }
+        }
     } catch (error: unknown) {
         if (error instanceof ZodError) {
             console.log(error.format());

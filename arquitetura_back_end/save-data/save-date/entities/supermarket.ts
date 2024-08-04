@@ -1,4 +1,4 @@
-
+import { GeolocationGetawayRegistry } from '../registries/geolocation-gataway-registry';
 
 export class Supermarket {
     private cnpj: string;
@@ -36,9 +36,11 @@ export class Supermarket {
     }
 
     public static async create(cnpj: string, name: string, address: string) {
-        const latitude = 0;
-        const longitude = 0;
+        const { latitude, longitude } = await GeolocationGetawayRegistry.getInstance()
+            .getGeolocationGetaway()
+            .getGeoLocationFromAddress(address);
 
         return new Supermarket(cnpj, name, address, latitude, longitude);
     }
+
 }

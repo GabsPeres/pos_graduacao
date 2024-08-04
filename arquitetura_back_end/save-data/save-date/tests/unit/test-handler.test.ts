@@ -1,6 +1,7 @@
 import { SQSEvent } from 'aws-lambda';
 import { lambdaHandler } from '../../app';
 import { expect, describe, it } from '@jest/globals';
+import { GoogleGeolocationGateway } from '../../adapters/google-geolocation-gateway';
 
 describe('Unit test for app handler', function () {
     it('verifies successful response', async () => {
@@ -26,4 +27,13 @@ describe('Unit test for app handler', function () {
           };
         await expect(lambdaHandler(event)).resolves.toBeUndefined();
     });
+
+    it.skip('GoogleGeolocationGateway', async () => {
+      const sut = new GoogleGeolocationGateway();
+      const response = await sut.getGeoLocationFromAddress(
+          'Rua Agenor de Paula Estrela, 672, Carmo, 	31748190 - Belo Horizonte, MG',
+      );
+      expect(response.latitude).toBe(-19.8094012);
+      expect(response.longitude).toBe(-43.93990549999999);
+  });
 });
