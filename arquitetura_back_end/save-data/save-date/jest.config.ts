@@ -8,5 +8,5 @@ export default {
     coverageDirectory: 'coverage',
     coverageProvider: 'v8',
     testMatch: ['**/tests/unit/*.test.ts'],
-    testTimeout: 500000,
+    testTimeout: 60000,
 };
