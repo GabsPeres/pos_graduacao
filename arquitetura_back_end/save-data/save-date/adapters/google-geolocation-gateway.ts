@@ -13,9 +13,7 @@ export class GoogleGeolocationGateway implements GeoLocationGateway {
                 };
             }[];
         }>(
-            `https://maps.googleapis.com/maps/api/geocode/json?key=${
-                process.env.AIzaSyCPNo16qmHAt6GtlZjzd4p0oJhQvgGBvJ0 as string
-            }&address=${address.split(' ').join('%20')}`,
+            `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCPNo16qmHAt6GtlZjzd4p0oJhQvgGBvJ0&address=${address.split(' ').join('%20')}`,
         );
 
         if (response.status !== 200) {

@@ -53,7 +53,7 @@ export async function lambdaHandler(event: SQSEvent): Promise<void> {
 
         const geolocationGateway: GeoLocationGateway = new GoogleGeolocationGateway();
         GeolocationGetawayRegistry.getInstance().setGeolocationGateway(geolocationGateway);
-        const dbConnection: DbConnection = new PgConnection(process.env.URL_POSTGRES as string);
+        const dbConnection: DbConnection = new PgConnection('postgresql://admin:x0dVsHDsnD3YQOMenxqU33ra6O7kkReD@dpg-cqn7vudsvqrc73fl2t90-a.virginia-postgres.render.com/db_midas_6rvt');
         const supermarketRepository: SupermarketRepository = new PgSupermarketRepository(dbConnection);
         const productRepository: ProductRepository = new PgProductRepository(dbConnection);
         const productPriceRepository: ProductPriceRepository = new PgProductPriceRepository(dbConnection);

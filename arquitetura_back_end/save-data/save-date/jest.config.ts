@@ -1,3 +1,4 @@
+import { TIMEOUT } from "node:dns";
 
 export default {
     transform: {
@@ -8,5 +9,5 @@ export default {
     coverageDirectory: 'coverage',
     coverageProvider: 'v8',
     testMatch: ['**/tests/unit/*.test.ts'],
-    testTimeout: 60000,
+    testTimeout: 30000,
 };

@@ -31,7 +31,7 @@ describe('Unit test for app handler', function () {
     it.skip('GoogleGeolocationGateway', async () => {
       const sut = new GoogleGeolocationGateway();
       const response = await sut.getGeoLocationFromAddress(
-          'Rua Agenor de Paula Estrela, 672, Carmo, 	31748190 - Belo Horizonte, MG',
+          'Rua Agenor de Paula Estrela, 672, Jaqueline, 	31748190 - Belo Horizonte, MG',
       );
       expect(response.latitude).toBe(-19.8094012);
       expect(response.longitude).toBe(-43.93990549999999);
