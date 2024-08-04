@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda-search-products
+
+  Sample SAM Template for lambda-search-products
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  SearchProductsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: search/
+      Handler: app.lambdaHandler
+      Runtime: nodejs20.x
+      Environment:
+        Variables:
+          DATABASE_URL: postgresql://admin:x0dVsHDsnD3YQOMenxqU33ra6O7kkReD@dpg-cqn7vudsvqrc73fl2t90-a/db_midas_6rvt
+      Architectures:
+        - x86_64
+      Events:
+        Products:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /products
+            Method: get
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints: 
+        - app.ts
