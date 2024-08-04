@@ -36,3 +36,7 @@ Resources:
         Sourcemap: true
         EntryPoints: 
         - app.ts
+  Outputs:
+  ProductsApi:
+    Description: "API Gateway endpoint URL for prod stage for SearchProductsFunction"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/products/"
